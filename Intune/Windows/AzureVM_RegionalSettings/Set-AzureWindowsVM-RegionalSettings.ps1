@@ -1,6 +1,7 @@
 # Script to configure regional settings to English UK on Azure Virtual Machines
 # Author: Victor Valentin
 # Pre-requisite:  Have the XML file exported from a machine with the right settings, and make the file available over the internet i.e. stored in GitHub or any other platform
+# To export regional settings to XML run the following command:  get-culture | select * | export-clixml <PATH>\Regional.xml
 # In this example the XML file is stored in my public GitHub repo and it the file contains English UK configuration
 
 # Downdload XML file
