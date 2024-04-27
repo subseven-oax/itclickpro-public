@@ -4,7 +4,7 @@
 # In this example the XML file is stored in my public GitHub repo and it the file contains English UK configuration
 
 # Downdload XML file
-$XMLfileURL = "https://raw.githubusercontent.com/subseven-oax/AzureVM-Personalization/main/AzureVM-GB-XMLfile.xml"  # Replace URL with the one for your XML file
+$XMLfileURL = "https://github.com/subseven-oax/itclickpro-public/raw/main/Intune/Windows/AzureVM_RegionalSettings/AzureVM-GB-RegionalSettings.xml"  # Replace URL with the one for your XML file
 $XMLfile = "D:\AzureVM-GB-XMLfile.xml"   # Set the temporal location of the XML file in the Virtual Machine, most Windows Azure VMs have a D: drive
 $webclient = New-Object System.Net.WebClient
 $webclient.DownloadFile($XMLfileURL,$XMLfile)
