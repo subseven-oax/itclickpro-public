@@ -9,5 +9,5 @@ New-Item $scriptdir -ItemType Directory -Force
 Copy-Item ".\Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1" -Destination $scriptdir -Force
 Copy-Item ".\Upload-USBRecoveryKeyAzureAD.ps1" -Destination $scriptdir -Force
 
-# Create new schedule task, modify "ExportedScheduledTask.xml" to reflect your settings
-Register-ScheduledTask -xml (Get-Content '.\ExportedScheduledTask.xml' | Out-String) -TaskName "Upload USB Recovery Key to AzureAD" -Force
+# Create new schedule task, modify "Upload-USBRecoveryKeyAzureAD.xml" to reflect the name of your XML file, the XML file in this repo has been created on a Windows 11 machine but it also works on Windows 10
+Register-ScheduledTask -xml (Get-Content '.\Upload-USBRecoveryKeyAzureAD.xml' | Out-String) -TaskName "Upload USB Recovery Key to AzureAD" -Force
