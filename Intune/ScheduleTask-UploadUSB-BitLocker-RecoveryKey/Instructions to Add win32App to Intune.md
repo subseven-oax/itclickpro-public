@@ -1,4 +1,4 @@
-# Deploy schedule task to upload BitLicker Recovery Keys To-Go (from USB Keys) to AzureAD
+# Deploy schedule task to upload BitLocker To-Go Recovery Keys (for USB Keys) to AzureAD
 
 Note that for this process targets Windows 10 and Windows 11 devices enrolled to Intune. It is also assumed that the devices have Internet connectivity when the scheduled task runs.
 
