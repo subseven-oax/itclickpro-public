@@ -19,28 +19,32 @@ NOTE: I tested successfully this file in two environments already (test and prod
 
 5.- Now especify the following, leave the rest with the default settings (these are the settings I tested), and click on Next when completed:
 
-    Install command: powershell.exe -executionpolicy unrestricted .\Register-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+    Install command: **powershell.exe -executionpolicy unrestricted .\Register-ScheduledTask-USBRecoveryKeyAzureAD.ps1**
 
-    Uninstall command: powershell.exe -executionpolicy unrestricted .\Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+    Uninstall command: **powershell.exe -executionpolicy unrestricted .\Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1**
 
-    Installation time required (mins): 60
+    Installation time required (mins): **60**
 
-    Allow available uninstall: Yes
+    Allow available uninstall: **Yes**
 
-    Install behavior: System
+    Install behavior: **System**
 
 6.- Under Requirements, I tested setting the Operating system architecture as 64-bit and Minimum operating system as Windows 10 20H2. Click on Next after setting your requirements.
 
 7.- Under detection rules set Manually configure detection rules, then click on Add and select "File" as the rule type, then set the following:
 
-    Path: C:\Admin\ScheduledTasks\USBRecoveryKeyAzureAD
+    Path: **C:\Admin\ScheduledTasks\USBRecoveryKeyAzureAD**
 
-    File or Folder: Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+    File or Folder: **Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1**
 
-    Detection Method: File or folder exists
+    Detection Method: **File or folder exists**
 
-    Associated with 32-bit app on 64-bit clients: No
+    Associated with 32-bit app on 64-bit clients: **No**
 
 8.- Click on Next until you get to Assinments, Select the group of devices you are deployint this scheduled task to, and click on Next.
 
 9.- Review your information and Save the new App.
+
+
+
+I hope this helps.
