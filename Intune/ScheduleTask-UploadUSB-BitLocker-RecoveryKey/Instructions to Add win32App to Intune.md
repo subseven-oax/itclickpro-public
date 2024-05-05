@@ -10,20 +10,37 @@ NOTE: I tested successfully this file in two environments already (test and prod
 
 ## Create new App in Intune
 1.- While in Intune, go to Apps > Windows.
+
 2.- Click on Add, choose Windows App (Win32), and click on Select.
+
 3.- Click on "Select app package file", and upload the .intunewin file previously downloaded, and click OK.
+
 4.- Edit the Name and Description if you want, especify the Plublisher name (other parameters are optional), and click on Next.
+
 5.- Now especify the following, leave the rest with the default settings (these are the settings I tested), and click on Next when completed:
+
     Install command: powershell.exe -executionpolicy unrestricted .\Register-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+
     Uninstall command: powershell.exe -executionpolicy unrestricted .\Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+
     Installation time required (mins): 60
+
     Allow available uninstall: Yes
+
     Install behavior: System
+
 6.- Under Requirements, I tested setting the Operating system architecture as 64-bit and Minimum operating system as Windows 10 20H2. Click on Next after setting your requirements.
+
 7.- Under detection rules set Manually configure detection rules, then click on Add and select "File" as the rule type, then set the following:
+
     Path: C:\Admin\ScheduledTasks\USBRecoveryKeyAzureAD
+
     File or Folder: Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+
     Detection Method: File or folder exists
+
     Associated with 32-bit app on 64-bit clients: No
+
 8.- Click on Next until you get to Assinments, Select the group of devices you are deployint this scheduled task to, and click on Next.
+
 9.- Review your information and Save the new App.
