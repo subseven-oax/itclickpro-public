@@ -1,4 +1,8 @@
-# Deploy schedule task to upload BitLocker To-Go Recovery Keys (for USB Keys) to AzureAD
+# Deploy schedule task to upload BitLocker To Go Recovery Keys (for USB Keys) to AzureAD
+
+Before we start, just a brief explanation of why I am deploying this scheduled task to devices.  When a USB device is encrypted using BitLocker To Go, the recovery key is not uploaded to AzureAD, instead the user needs to save/print a copy of the recovery key. This leave IT Admins with a big problem when a user calls for assistance to retrieve files from an USB drive encrypted with BitLocker To Go and the user forgets their password and where they saved the copy of the recovery key, or simply lost it.
+
+This Schedule Task has been created to automatically upload a copy of the recovery key when the encryption of an USB key starts (EventID 24660).
 
 Note that for this process targets Windows 10 and Windows 11 devices enrolled to Intune. It is also assumed that the devices have Internet connectivity when the scheduled task runs.
 
