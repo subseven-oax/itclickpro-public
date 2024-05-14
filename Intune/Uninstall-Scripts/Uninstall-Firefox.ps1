@@ -1,28 +1,19 @@
-# This script uninstalls Mozilla Firefox
-# Source:  https://www.hexnode.com/mobile-device-management/help/script-to-install-and-uninstall-mozilla-firefox-on-windows-devices/
+# This script has been tested on Windows x64 with Firefox x64 installed
+# This script is to be deployed via Microsoft Intune
+# Written by Victor Valentin
 
-try 
-{
-$appExists = $true 
-$filePath = "C:\Program Files\Mozilla Firefox\uninstall\helper.exe" 
-if(-not(Test-Path $filePath)) 
-{ 
-$filePath = "C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe" 
-if(-not(Test-Path $filePath)) 
-{ 
-$appExists = $false 
-} 
+# Full path of uninstall executable file file
+$file = 'C:\Program Files\Mozilla Firefox\uninstall\helper.exe'
+
+# Check if helper.exe exists, tested on versions from 98.0.1 to 125.0.3
+if  (Test-Path -Path $file -PathType Leaf) {
+    try {
+        # If helper.exe exists, runs the uninstallation process
+        Start-Process $file -Wait -ArgumentList "/s" -Verb RunAs -WindowStyle Hidden
+        }
+    catch {
+        throw $_.Exception.Message
+        }
 }
-if($appExists) 
-{
-Start-Process -FilePath $filePath -ArgumentList "/s" -Wait
-Write-Host "Successfully uninstalled Firefox application." 
-}
-else
-{
-Write-Host "Firefox is not installed on this device.”} 
-}
-catch 
-{ 
-Write-Host $_.Execption.Message 
-}
+
+exit $LASTEXITCODE    # Returns the value 0 if succeded, and 1 if failed - For reporting purposes only
