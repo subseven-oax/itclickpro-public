@@ -30,14 +30,12 @@ function Add-LanguagePack {
     param (
         [string[]]$RegionTag
     )
-    $Capabilities = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag;
+    $CapabilityList = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-Table -Property Name
 
-    foreach ($Name in $Capabilities) {
+    foreach ($Capability in $CapabilityList) {
         try {
-
-            ############  NEED TO BE CHECKED
-            # $Results = Add-WindowsCapability -Online -Name $Capabilities.Name -ErrorAction SilentlyContinue
-            # Dism /Online /Add-Capability /CapabilityName:$Capabilities.Name
+            $DismParameter = '/Online /Add-Capability /CapabilityName:' + $CapabilityList.Name
+            Start-Process DISM.exe -ArgumentList $DismParameter -Verb RunAs -WindowStyle Hidden
         }
         catch {
             Write-Warning -Message "Unable to install capability"
