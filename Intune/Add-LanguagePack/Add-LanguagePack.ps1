@@ -34,7 +34,10 @@ function Add-LanguagePack {
 
     foreach ($Name in $Capabilities) {
         try {
-            $Results = Add-WindowsCapability -Online -Name $Name -ErrorAction SilentlyContinue
+
+            ############  NEED TO BE CHECKED
+            # $Results = Add-WindowsCapability -Online -Name $Capabilities.Name -ErrorAction SilentlyContinue
+            # Dism /Online /Add-Capability /CapabilityName:$Capabilities.Name
         }
         catch {
             Write-Warning -Message "Unable to install capability"
@@ -42,3 +45,6 @@ function Add-LanguagePack {
     }
 exit $LASTEXITCODE    # Returns the value 0 if succeded, and 1 if failed - For reporting purposes only
 }
+
+# Calling Function
+Add-LanguagePack -RegionTag 'el-GR'   # Adds Greek language components
