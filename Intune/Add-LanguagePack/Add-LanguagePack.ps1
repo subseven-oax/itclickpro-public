@@ -39,8 +39,7 @@ function Add-LanguagePack {
     {
         try {
             $DismParameter = '/Online /Add-Capability /CapabilityName:' + (Get-Content $CapabilitiesFile | Select-Object -Index $i)
-            Start-Process DISM.exe -ArgumentList $DismParameter # -Verb RunAs -WindowStyle Hidden
-            write-host $DismParameter
+            Start-Process DISM.exe -ArgumentList $DismParameter -Wait -WindowStyle Hidden
         }
         catch {
             Write-Warning -Message "Unable to install capability"
