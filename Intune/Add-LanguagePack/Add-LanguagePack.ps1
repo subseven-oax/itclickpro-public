@@ -30,17 +30,23 @@ function Add-LanguagePack {
     param (
         [string[]]$RegionTag
     )
-    $CapabilityList = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-Table -Property Name
+    $CapabilitiesFile = 'C:\Admin\capabilities.txt'
+    $CapabilityList = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-List -Property Name | Out-File -FilePath $CapabilitiesFile
+    (Get-Content $CapabilitiesFile) -replace “Name : ”, “” | Set-Content -Path $CapabilitiesFile
+    [IO.File]::ReadAllText($CapabilitiesFile) -replace '\s+\r\n+', "`r`n" | Out-File $CapabilitiesFile
 
-    foreach ($Capability in $CapabilityList) {
+    for ($i=1; $i -le ((Get-Content $CapabilitiesFile).Length - 2) ; $i++)
+    {
         try {
-            $DismParameter = '/Online /Add-Capability /CapabilityName:' + $CapabilityList.Name
-            Start-Process DISM.exe -ArgumentList $DismParameter -Verb RunAs -WindowStyle Hidden
+            $DismParameter = '/Online /Add-Capability /CapabilityName:' + (Get-Content $CapabilitiesFile | Select-Object -Index $i)
+            Start-Process DISM.exe -ArgumentList $DismParameter # -Verb RunAs -WindowStyle Hidden
+            write-host $DismParameter
         }
         catch {
             Write-Warning -Message "Unable to install capability"
         }
     }
+
 exit $LASTEXITCODE    # Returns the value 0 if succeded, and 1 if failed - For reporting purposes only
 }
 
