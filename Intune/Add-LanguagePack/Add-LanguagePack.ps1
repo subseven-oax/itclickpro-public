@@ -7,6 +7,7 @@ function Add-LanguagePack {
     .DESCRIPTION
         Installs Windows Language Packs in the system.
         This fuction only install all the required capabilities for a specific language but does not installs the actual language in the system, users would have to go to Settings > Time & Language to add it, but all required components will be available.
+        
     .PARAMETER RegionTag
         RegionTag is the identification of the language to install, to see all possible RegionTags go to https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows?view=windows-11
         For example, for Japanese use ja-JP, and for Spanish Mexico use es-MX.
@@ -30,11 +31,14 @@ function Add-LanguagePack {
     param (
         [string[]]$RegionTag
     )
+
+    # Creates capabilities.txt file with the list of names to be parsed as parameters when running Dism, te file needed some transformation so there are three lines to do that
     $CapabilitiesFile = 'C:\Admin\capabilities.txt'
-    $CapabilityList = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-List -Property Name | Out-File -FilePath $CapabilitiesFile
+    Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-List -Property Name | Out-File -FilePath $CapabilitiesFile
     (Get-Content $CapabilitiesFile) -replace “Name : ”, “” | Set-Content -Path $CapabilitiesFile
     [IO.File]::ReadAllText($CapabilitiesFile) -replace '\s+\r\n+', "`r`n" | Out-File $CapabilitiesFile
 
+    # Installs each capability found, the first and last line of the file are empty so we start our loop from line 1 not 0, and we stop at number of lines in the file minus 2 (the first and last)
     for ($i=1; $i -le ((Get-Content $CapabilitiesFile).Length - 2) ; $i++)
     {
         try {
@@ -50,4 +54,4 @@ exit $LASTEXITCODE    # Returns the value 0 if succeded, and 1 if failed - For r
 }
 
 # Calling Function
-Add-LanguagePack -RegionTag 'el-GR'   # Adds Greek language components
+Add-LanguagePack -RegionTag 'ja-JP'   # Adds Japanese language components
