@@ -34,7 +34,7 @@ function Add-LanguagePack {
     # Creates capabilities.txt file with the list of names to be parsed as parameters when running Dism, te file needed some transformation so there are three lines to do that
     $CapabilitiesFile = 'C:\Admin\capabilities.txt'
     $CapabilityList = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-List -Property Name | Out-File -FilePath $CapabilitiesFile
-    (Get-Content $CapabilitiesFile) -replace “Name : ”, “” | Set-Content -Path $CapabilitiesFile
+    (Get-Content $CapabilitiesFile) -replace "Name : ", "" | Set-Content -Path $CapabilitiesFile
     [IO.File]::ReadAllText($CapabilitiesFile) -replace '\s+\r\n+', "`r`n" | Out-File $CapabilitiesFile
 
     # Installs each capability found, the first and last line of the file are empty so we start our loop from line 1 not 0, and we stop at number of lines in the file minus 2 (the first and last)
