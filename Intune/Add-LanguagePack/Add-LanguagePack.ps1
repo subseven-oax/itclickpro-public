@@ -7,7 +7,6 @@ function Add-LanguagePack {
     .DESCRIPTION
         Installs Windows Language Packs in the system.
         This fuction only install all the required capabilities for a specific language but does not installs the actual language in the system, users would have to go to Settings > Time & Language to add it, but all required components will be available.
-        
     .PARAMETER RegionTag
         RegionTag is the identification of the language to install, to see all possible RegionTags go to https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows?view=windows-11
         For example, for Japanese use ja-JP, and for Spanish Mexico use es-MX.
@@ -34,7 +33,7 @@ function Add-LanguagePack {
 
     # Creates capabilities.txt file with the list of names to be parsed as parameters when running Dism, te file needed some transformation so there are three lines to do that
     $CapabilitiesFile = 'C:\Admin\capabilities.txt'
-    Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-List -Property Name | Out-File -FilePath $CapabilitiesFile
+    $CapabilityList = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-List -Property Name | Out-File -FilePath $CapabilitiesFile
     (Get-Content $CapabilitiesFile) -replace “Name : ”, “” | Set-Content -Path $CapabilitiesFile
     [IO.File]::ReadAllText($CapabilitiesFile) -replace '\s+\r\n+', "`r`n" | Out-File $CapabilitiesFile
 
