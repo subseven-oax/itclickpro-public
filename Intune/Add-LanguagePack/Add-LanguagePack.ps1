@@ -30,9 +30,12 @@ function Add-LanguagePack {
     param (
         [string[]]$RegionTag
     )
-
+    # Force creation of folder
+    # Force creation of folder
+    $scriptdir = 'C:\Admin'
+    New-Item $scriptdir -ItemType Directory -Force
     # Creates capabilities.txt file with the list of names to be parsed as parameters when running Dism, te file needed some transformation so there are three lines to do that
-    $CapabilitiesFile = 'C:\Admin\capabilities.txt'
+    $CapabilitiesFile = $scriptdir + '\capabilities.txt'
     $CapabilityList = Get-WindowsCapability -Online | Where-Object -Property 'Name' -match -Value $RegionTag | Format-List -Property Name | Out-File -FilePath $CapabilitiesFile
     (Get-Content $CapabilitiesFile) -replace "Name : ", "" | Set-Content -Path $CapabilitiesFile
     [IO.File]::ReadAllText($CapabilitiesFile) -replace '\s+\r\n+', "`r`n" | Out-File $CapabilitiesFile
