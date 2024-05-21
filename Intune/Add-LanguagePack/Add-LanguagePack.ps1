@@ -30,7 +30,7 @@ function Add-LanguagePack {
     param (
         [string[]]$RegionTag
     )
-    # Force creation of folder
+    
     # Force creation of folder
     $scriptdir = 'C:\Admin'
     New-Item $scriptdir -ItemType Directory -Force
