@@ -7,12 +7,14 @@ This Schedule Task has been created to automatically upload a copy of the recove
 Note that for this process targets Windows 10 and Windows 11 devices enrolled to Intune. It is also assumed that the devices have Internet connectivity when the scheduled task runs.
 
 ## Download .intunewin file
+
 Download [ScheduledTask-USBRecoveryKeyAzureAD.intunewin](https://github.com/subseven-oax/itclickpro-public/blob/be6d126f5ea430f22859810ba324d31d88930b4c/Intune/ScheduleTask-UploadUSB-BitLocker-RecoveryKey/Register-ScheduledTask-USBRecoveryKeyAzureAD.intunewin)
 This file will be used to create the Intune win32 App.  
 
 NOTE: I tested successfully this file in two environments already (test and production), both deployed to Windows 10 x64 and Win 11 x64 devices, also to parallels VMs running on Macbooks with M processors.  But I suggest you also run your own tests and make adjustments as necessary. The .intunewin file in this test uses all files in this folder, if you are making changes to the powershell scripts or XML file, you need to re-package the files in a new .intunewin file.
 
 ## Create new App in Intune
+
 1.- While in Intune, go to Apps > Windows.
 
 2.- Click on Add, choose Windows App (Win32), and click on Select.
@@ -48,7 +50,5 @@ NOTE: I tested successfully this file in two environments already (test and prod
 8.- Click on Next until you get to Assinments, Select the group of devices you are deployint this scheduled task to, and click on Next.
 
 9.- Review your information and Save the new App.
-
-
 
 I hope this helps.
