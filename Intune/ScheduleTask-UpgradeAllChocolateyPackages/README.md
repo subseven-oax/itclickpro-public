@@ -1,15 +1,15 @@
-# Deploy schedule task to upload BitLocker To Go Recovery Keys (for USB Keys) to AzureAD
+# Deploy schedule task to upgrade all Chocolatey packages installed on a device
 
-Before we start, just a brief explanation of why I am deploying this scheduled task to devices.  When a USB device is encrypted using BitLocker To Go, the recovery key is not uploaded to AzureAD, instead the user needs to save/print a copy of the recovery key. This leave IT Admins with a big problem when a user calls for assistance to retrieve files from an USB drive encrypted with BitLocker To Go and the user forgets their password and where they saved the copy of the recovery key, or simply lost it.
+Before we start, just a brief explanation of why I am deploying this scheduled task to devices.  [Chocolatey] (https://chocolatey.org/) is package manager for Windows used to deploy software to devices. After a package is installed on a device users can manually upgrade the packages installed by running the command 'choco upgrade all -y' or by using the Chocolatey GUI if installed.
 
-This Schedule Task has been created to automatically upload a copy of the recovery key when the encryption of an USB key starts (EventID 24660).
+This Schedule Task has been created to automatically upgrade all installed packages by calling the command described above, the task runs every third Thursday of the month at 1pm.
 
 Note that for this process targets Windows 10 and Windows 11 devices enrolled to Intune. It is also assumed that the devices have Internet connectivity when the scheduled task runs.
 
 ## Download .intunewin file
 
-Download [ScheduledTask-USBRecoveryKeyAzureAD.intunewin](https://github.com/subseven-oax/itclickpro-public/blob/be6d126f5ea430f22859810ba324d31d88930b4c/Intune/ScheduleTask-UploadUSB-BitLocker-RecoveryKey/Register-ScheduledTask-USBRecoveryKeyAzureAD.intunewin)
-This file will be used to create the Intune win32 App.  
+Download [Register-ScheduledTask-UpdateChocolateyPackages.intunewin](https://github.com/subseven-oax/itclickpro-public/blob/be6d126f5ea430f22859810ba324d31d88930b4c/Intune/ScheduleTask-UpgradeAllChocolateyPackages/Register-ScheduledTask-UpdateChocolateyPackages.intunewin)
+This file will be used to create the Intune win32 App. 
 
 NOTE: I tested successfully this file in two environments already (test and production), both deployed to Windows 10 x64 and Win 11 x64 devices, also to parallels VMs running on Macbooks with M processors.  But I suggest you also run your own tests and make adjustments as necessary. The .intunewin file in this test uses all files in this folder, if you are making changes to the powershell scripts or XML file, you need to re-package the files in a new .intunewin file.
 
@@ -25,9 +25,9 @@ NOTE: I tested successfully this file in two environments already (test and prod
 
 5.- Now especify the following, leave the rest with the default settings (these are the settings I tested), and click on Next when completed:
 
-    Install command: powershell.exe -executionpolicy unrestricted .\Register-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+    Install command: powershell.exe -executionpolicy unrestricted .\Register-ScheduledTask-UpdateChocolateyPackages.ps1
 
-    Uninstall command: powershell.exe -executionpolicy unrestricted .\Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+    Uninstall command: powershell.exe -executionpolicy unrestricted .\Unregister-ScheduledTask-UpdateChocolateyPackages.ps1
 
     Installation time required (mins): 60
 
@@ -39,9 +39,9 @@ NOTE: I tested successfully this file in two environments already (test and prod
 
 7.- Under detection rules set Manually configure detection rules, then click on Add and select "File" as the rule type, then set the following:
 
-    Path: C:\Admin\ScheduledTasks\USBRecoveryKeyAzureAD
+    Path: c:\Admin\ScheduledTasks\ChocoUpgradeAll
 
-    File or Folder: Unregister-ScheduledTask-USBRecoveryKeyAzureAD.ps1
+    File or Folder: Unregister-ScheduledTask-UpdateChocolateyPackages.ps1
 
     Detection Method: File or folder exists
 

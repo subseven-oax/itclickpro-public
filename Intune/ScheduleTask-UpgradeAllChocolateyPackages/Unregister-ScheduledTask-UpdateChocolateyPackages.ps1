@@ -1,0 +1,1 @@
+unregister-scheduledtask -taskname "Update All Chocolatey Packages" -confirm:$false
