@@ -8,7 +8,7 @@ Note that for this process targets Windows 10 and Windows 11 devices enrolled to
 
 ## Download .intunewin file
 
-Download [Register-ScheduledTask-UpdateChocolateyPackages.intunewin](https://github.com/subseven-oax/itclickpro-public/blob/be6d126f5ea430f22859810ba324d31d88930b4c/Intune/ScheduleTask-UpgradeAllChocolateyPackages/Register-ScheduledTask-UpdateChocolateyPackages.intunewin)
+Download [Register-ScheduledTask-UpdateChocolateyPackages.intunewin](https://github.com/subseven-oax/itclickpro-public/blob/39e8073e0e88d426669db2d0f79b687a9694c33b/Intune/ScheduleTask-UpgradeAllChocolateyPackages/Register-ScheduledTask-UpdateChocolateyPackages.intunewin)
 This file will be used to create the Intune win32 App. 
 
 NOTE: I tested successfully this file in two environments already (test and production), both deployed to Windows 10 x64 and Win 11 x64 devices, also to parallels VMs running on Macbooks with M processors.  But I suggest you also run your own tests and make adjustments as necessary. The .intunewin file in this test uses all files in this folder, if you are making changes to the powershell scripts or XML file, you need to re-package the files in a new .intunewin file.
