@@ -3,7 +3,7 @@
 
 # Define list of Winget ID packages to install, on a device with winget install use the 'winget search <AppName>' command to find the package IDs
 $WingetPackages = @("9NZVDKPMR9RD","7zip.7zip","XP9KHM4BK9FZ7Q")  # This example installs Firefox, 7-Zip and Visual Studio Code
-$MyApp = Get-AppxPackage –AllUsers | Select Name, PackageFullName | where {$_.Name -eq "Microsoft.Winget.Source"}
+$MyApp = Get-AppxPackage –AllUsers | Select-Object Name, PackageFullName | Where-Object {$_.Name -eq "Microsoft.Winget.Source"}
 
 #Logic To Install Winget or Skip
 if ($MyApp.Name -eq "Microsoft.Winget.Source"){
