@@ -1,5 +1,5 @@
 ﻿function Get-EdgeHistory {
-    $Path = "$Env:systemdrive\Users\$UserName\AppData\Local\Microsoft\Edge\User Data\Default\History"
+    $Path = "$Env:systemdrive\Users\$Env:USERNAME\AppData\Local\Microsoft\Edge\User Data\Default\History"
     if (-not (Test-Path -Path $Path)) {
         Write-Verbose "[!] Could not find Chrome History for username: $Env:USERNAME"
     } else {
