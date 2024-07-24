@@ -8,7 +8,7 @@
         foreach ($url in $Value) {
             New-Object -TypeName PSObject -Property @{
                 User = $env:UserName
-                Browser = 'Chrome'
+                Browser = 'Edge'
                 DataType = 'History'
                 Data = $url
             }
