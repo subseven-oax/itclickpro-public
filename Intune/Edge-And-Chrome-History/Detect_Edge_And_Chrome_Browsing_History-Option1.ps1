@@ -10,7 +10,7 @@ if (Test-Path $filePath) {
     $timeDifference = (Get-Date) - $lastWriteTime
 
     # Check if the file is older than 1 day
-    if ($timeDifference.Days -ge 1) {
+    if ($timeDifference.Days -ge 1) {   #  You can change the number of days so the collection of history isn't done every day
         Write-Output "The file is older than 1 day."
         Exit 1
     } else {
