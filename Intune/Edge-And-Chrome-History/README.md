@@ -1,4 +1,4 @@
-# Retrieving user's browsing history
+# Retrieving user's browsing history from Edge and Chrome
 The scripts in this section were designed to be used in Microsoft Intune as Remediations, 2 options were created and they work in different ways. This solution was have been used in an enviroment where resources are limited so no Web Filtering is in place and there is a need of carry out investigations on what users are browsing sporadically.
 
 By the way, users shall be aware that you are collecting this type of information from the devices.
