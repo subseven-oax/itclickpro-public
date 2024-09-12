@@ -13,8 +13,5 @@ Scripts designed to be deployed via intune for Windows and MacOS devices, most i
 ## PowerShell
 These scripts have been used mainly for OS Deployment during projects I did with MS SCCM, others were used to fix issues on Windows devices, I tried to add as much comments as I could so it makes it easier to understand.
 
-## MacOS Shell Scripts
-These scripts have been collected from different sources and have been already tested, but as usual make sure you test it before using it in production.
-
 ## Batch - Windows 
 These scripts have also been collected from different sources and have been already tested and used for IT support porpuses, but as usual make sure you test it before using it in production.
