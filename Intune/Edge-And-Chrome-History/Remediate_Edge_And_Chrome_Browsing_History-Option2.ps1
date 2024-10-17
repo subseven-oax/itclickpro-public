@@ -1,5 +1,5 @@
 ﻿# Define email parameters, I am using Brevo service to send email, please make sure you change settings according to your needs
-# This script assumes Brevo is already configured correctly and allows sending emails from specific email addresses, also that the relevant SPF record changes have been configured to allow Brevo sending emails using your chosen domain
+# This script assumes Brevo (or similar service) is already configured correctly and allows sending emails from specific email addresses, also that the relevant SPF record changes have been configured to allow Brevo sending emails using your chosen domain
 $smtpServer = "smtp-relay.brevo.com"
 $smtpPort = 587
 $smtpUsername = "user@example.com"    # This is the username used to login to Brevo's smtp relay
