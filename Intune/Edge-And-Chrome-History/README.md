@@ -12,21 +12,21 @@ This option detect if the CSV files exist, and if the existing CSV file is older
 
 Scripts to use:
 
-[https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Detect_Edge_And_Chrome_Browsing_History-Option1.ps1](url)
+[Detect_Edge_And_Chrome_Browsing_History-Option1.ps1](https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Detect_Edge_And_Chrome_Browsing_History-Option1.ps1)
 
-[https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Remediate_Edge_And_Chrome_Browsing_History-Option1.ps1](url)
+[Remediate_Edge_And_Chrome_Browsing_History-Option1.ps1]([url](https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Remediate_Edge_And_Chrome_Browsing_History-Option1.ps1))
 
 ## Option 2 - Full DataBase collection
 
-This option creates copies of the "history" files and send them by email using Brevo's SMTP service (this could be substituted with another SMTP service), this option does not leave a trace in users mailbox, history files can be analysed using a SQLite Browser app, I am using this one [https://sqlitebrowser.org/dl/](url), again users shall be aware that you are collecting this type of information from the devices.
+This option creates copies of the "history" files and send them by email using Brevo's SMTP service (this could be substituted with another SMTP service), this option does not leave a trace in users mailbox, history files can be analysed using a SQLite Browser app, I am using this one [SQLiteBrowser]([url](https://sqlitebrowser.org/dl/)), again users shall be aware that you are collecting this type of information from the devices.
 
 **Note:** This option assumes you already have a SMTP service configured and that you have the details to use it, including username and password.
 
 Scripts to use:
 
-[https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Detect_Edge_And_Chrome_Browsing_History-Option2.ps1](url)
+[Detect_Edge_And_Chrome_Browsing_History-Option2.ps1]([url](https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Detect_Edge_And_Chrome_Browsing_History-Option2.ps1))
 
-[https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Remediate_Edge_And_Chrome_Browsing_History-Option2.ps1](url)
+[Remediate_Edge_And_Chrome_Browsing_History-Option2.ps1]([url](https://github.com/subseven-oax/itclickpro-public/blob/main/Intune/Edge-And-Chrome-History/Remediate_Edge_And_Chrome_Browsing_History-Option2.ps1))
 
 ## Deploying the Remediation with Intune
 
