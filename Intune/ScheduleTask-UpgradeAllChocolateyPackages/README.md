@@ -1,6 +1,6 @@
 # Deploy schedule task to upgrade all Chocolatey packages installed on a device
 
-Before we start, just a brief explanation of why I am deploying this scheduled task to devices.  [Chocolatey] (https://chocolatey.org/) is package manager for Windows used to deploy software to devices. After a package is installed on a device users can manually upgrade the packages installed by running the command 'choco upgrade all -y' or by using the Chocolatey GUI if installed.
+Before we start, just a brief explanation of why I am deploying this scheduled task to devices.  [Chocolatey](https://chocolatey.org/) is package manager for Windows used to deploy software to devices. After a package is installed on a device users can manually upgrade the packages installed by running the command 'choco upgrade all -y' or by using the Chocolatey GUI if installed.
 
 This Schedule Task has been created to automatically upgrade all installed packages by calling the command described above, the task runs every third Thursday of the month at 1pm.
 
