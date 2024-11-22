@@ -9,7 +9,9 @@
 # Make the script executable by running chmod +x change-creation-date.sh
 # Run the script with the files you want to change as arguments, like this:
 # ./change-creation-date.sh 20240807_171958.jpg
-
+# If you need to change the date on multiple files do the following:
+# Type (without the quotation marks but make sure there is a space at the end) './change-creation-date.sh '
+# Open finder to locate your files, select all files you wish to change the creation date and drag them to the Terminal window, finally press Enter and wait
 
 # Function to change the file creation date
 change_creation_date() {
