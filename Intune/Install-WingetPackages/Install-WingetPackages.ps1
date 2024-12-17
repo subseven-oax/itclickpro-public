@@ -9,16 +9,12 @@ $WingetSource = @("msstore","msstore","msstore")  # Define the source of the pac
 $wingetInstalled = Get-Command winget -ErrorAction SilentlyContinue
 
 if (-not $wingetInstalled) {
-    # Get the latest download URL for Winget
     $progressPreference = 'silentlyContinue'
-	Write-Information "Downloading WinGet, its dependencies, and install them"
-	Invoke-WebRequest -Uri https://aka.ms/getwinget -OutFile Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
-	Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
-	Invoke-WebRequest -Uri https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx -OutFile Microsoft.UI.Xaml.2.8.x64.appx
-	Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
-	Add-AppxPackage Microsoft.UI.Xaml.2.8.x64.appx
-	Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
-    Write-Host "Winget has been installed successfully!"
+	Write-Host "Installing WinGet PowerShell module from PSGallery..."
+	Install-PackageProvider -Name NuGet -Force | Out-Null
+	Install-Module -Name Microsoft.WinGet.Client -Force -Repository PSGallery | Out-Null
+	Write-Host "Using Repair-WinGetPackageManager cmdlet to bootstrap WinGet..."
+	Repair-WinGetPackageManager
 } else {
     Write-Host "Winget is already installed."
 }
