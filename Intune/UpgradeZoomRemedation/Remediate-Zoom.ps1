@@ -46,7 +46,7 @@ function Install-ModuleIfNotInstalled {
 function Install-Zoom {
     $installerPath = "$env:TEMP\ZoomInstallerFull.msi"
     Invoke-WebRequest -Uri $zoomDownloadUrl -OutFile $installerPath
-    Start-Process msiexec.exe -ArgumentList "/i `"$installerPath`" /quiet /norestart" -Wait
+    Start-Process msiexec.exe -ArgumentList "/i `"$installerPath`" /quiet /norestart MSIRESTARTMANAGERCONTROL=`"Disable`" ZConfig=`"nogoogle=1`" ZConfig=`"nofacebook=1`" ZRecommend=`"KeepSignedIn=1`" ZRecommend=`"AudioAutoAdjust=1`"" -Wait
     Remove-Item $installerPath
 }
 
