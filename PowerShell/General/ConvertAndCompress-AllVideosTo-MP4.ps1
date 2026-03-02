@@ -74,7 +74,7 @@ foreach ($file in $files) {
     Write-Host "Converting: $($file.Name) -> $outputFileName"
     
     # Run FFmpeg conversion
-    & ffmpeg -i "$($file.FullName)" -c:v $VideoCodec -pixel_format $Pixel_Format -y "$outputPath"
+    & ffmpeg -i "$($file.FullName)" -c:v $VideoCodec -pix_fmt $Pixel_Format -y "$outputPath"
     
     if ($LASTEXITCODE -eq 0) {
         Write-Host "Successfully converted: $($file.Name)"
